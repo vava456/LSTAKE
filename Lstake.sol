@@ -1,60 +1,29 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: GPL-3.0
 
-interface IZkSync {
-    function depositETH(address _zkSyncAddress) external payable;
-    // Add other zkSync functions here as needed
-}
+pragma solidity >=0.8.2 <0.9.0;
 
-contract Liquistake {
-    IZkSync public zkSync;
-    string public tokenTicker = "LSTAKE";
+/**
+ * @title LSTAKE
+ * @dev LSTAKE TOKEN V1
+ * @custom:dev-run-script ./scripts/deploy_with_ethers.ts
+ */
+contract LSTAKE {
 
-    constructor(address _zkSyncAddress) {
-        zkSync = IZkSync(_zkSyncAddress);
+    uint256 number;
+
+    /**
+     * @dev Store value in variable
+     * @param num value to store
+     */
+    function store(uint256 num) public {
+        number = num;
     }
 
-    function depositToZkSync() external payable {
-        zkSync.depositETH{value: msg.value}(address(this));
-    }
-
-    // Add other functions to interact with zkSync as needed
-    
-    event Transfer(address indexed from, address indexed to, uint256 value);
-
-    event Approval(address indexed owner, address indexed spender, uint256 value);
-
-    function totalSupply() external view returns (uint256) {
-        // Implement totalSupply logic here
-    }
-
-    function balanceOf(address account) external view returns (uint256) {
-        // Implement balanceOf logic here
-    }
-
-    function transfer(address to, uint256 amount) external returns (bool) {
-        // Implement transfer logic here
-    }
-
-    function allowance(address owner, address spender) external view returns (uint256) {
-        // Implement allowance logic here
-    }
-
-    function approve(address spender, uint256 amount) external returns (bool) {
-        // Implement approve logic here
-    }
-
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) external returns (bool) {
-        // Implement transferFrom logic here
-    }
-}
-
-contract LSTAKE is Liquistake {
-    constructor(address _zkSyncAddress) Liquistake(_zkSyncAddress) {
-        // No need to do anything here
+    /**
+     * @dev Return value 
+     * @return value of 'number'
+     */
+    function retrieve() public view returns (uint256){
+        return number;
     }
 }
