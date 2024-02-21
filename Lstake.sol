@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.23;
+pragma solidity ^0.8.0;
 
 interface IZkSync {
     function depositETH(address _zkSyncAddress) external payable;
